@@ -1,0 +1,14 @@
+{
+  "name": "argentum",
+  "description": "Command line arguments parser",
+  "version": "0.1.0",
+  "repository": "rumkin/argentum",
+  "main": "src/argentum.js",
+  "devDependencies": {
+    "mocha": "^2.3.3",
+    "unit.js": "^2.0.0"
+  },
+  "scripts": {
+    "test": "$NODE node_modules/.bin/mocha test/*.spec.js"
+  }
+}
