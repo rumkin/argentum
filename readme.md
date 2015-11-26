@@ -36,3 +36,22 @@ Parsing results:
 | `--bool`          | `{bool: true}`     |
 | `--a[] 1 2`       | `{a: [1,2]}`       |
 | `--a[]=1 --a[]=2` | `{a: [1,2]}`       |
+
+
+## Interface
+
+Package require interface.
+
+## parse(string[]) -> object
+
+Parse array of strings and return an object of properties.
+
+## parseValue(string) -> boolean,number,string
+
+Parse string value to match `true`, `false` or number patterns otherwise return
+string.
+
+## split(args string[],limit number) -> string[][]
+
+Split array into two arrays with double hyphen as separator. Limit should match
+count of found separators.

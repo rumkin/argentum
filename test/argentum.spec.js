@@ -103,4 +103,33 @@ describe('Argentum argv parser', function () {
       .hasProperty('2', 'hello')
       ;
   });
+
+  it('Should split arrays with double hyphen', function () {
+    var result = argentum.split(['1', '--', '2', '--', '3']);
+
+    test.array(result).hasProperty('length', 3);
+    test.array(result[0]);
+    test.array(result[1]);
+    test.array(result[2]);
+  });
+
+  it('Should split arrays with double hyphen with limit', function () {
+    var result = argentum.split(['1', '--', '2', '--', '3'], 1);
+
+    test.array(result).hasProperty('length', 2);
+    test.array(result[0]);
+    test.array(result[1])
+      .hasProperty('length', 3)
+      .hasProperty('0', '2')
+      .hasProperty('1', '--')
+      .hasProperty('2', '3')
+      ;
+  });
+
+  it('Should not split arrays with double hyphen', function () {
+    var result = argentum.split(['1']);
+
+    test.array(result).hasProperty('length', 1);
+    test.array(result[0]);
+  });
 });

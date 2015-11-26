@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports.parse = parse;
+module.exports.split = split;
 module.exports.parseValue = parseValue;
 
 var rule = /^--([a-zA-Z0-9][a-zA-Z0-9_-]*)(\[])?(=(.+))?$/;
@@ -55,6 +56,22 @@ function parse(argv) {
   });
 
   return opts;
+}
+
+function split(args, limit) {
+  if (arguments.length < 2) {
+    limit = Infinity;
+  }
+
+  var i = 0;
+  var result = [];
+  while (limit-- && (i = args.indexOf('--')) > -1) {
+    result.push(args.slice(0, i));
+    args = args.slice(i + 1);
+  }
+
+  result.push(args.slice());
+  return result;
 }
 
 /**
