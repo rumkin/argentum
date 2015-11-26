@@ -10,5 +10,6 @@
   },
   "scripts": {
     "test": "$NODE node_modules/.bin/mocha test/*.spec.js"
-  }
+  },
+  "license": "MIT"
 }
