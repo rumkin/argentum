@@ -5,11 +5,16 @@
   "repository": "rumkin/argentum",
   "main": "src/argentum.js",
   "devDependencies": {
+    "istanbul": "^0.4.1",
     "mocha": "^2.3.3",
     "unit.js": "^2.0.0"
   },
   "scripts": {
-    "test": "$NODE node_modules/.bin/mocha test/*.spec.js"
+    "test": "make test",
+    "cov": "make cov"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "mocha-istanbul": "^0.2.0"
+  }
 }

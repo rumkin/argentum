@@ -3,7 +3,6 @@
 module.exports.parse = parse;
 module.exports.parseValue = parseValue;
 
-
 var rule = /^--([a-zA-Z0-9][a-zA-Z0-9_-]*)(\[])?(=(.+))?$/;
 
 /**

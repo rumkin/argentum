@@ -1,5 +1,9 @@
 var test = require('unit.js');
-var argentum = require('../src/argentum.js');
+var argentum = require(
+  process.env.COVER
+    ? '../lib-cov/argentum.js'
+    : '..'
+);
 
 describe('Argentum argv parser', function () {
   it('Should return object on parse', function () {
