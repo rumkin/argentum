@@ -46,7 +46,7 @@ Package require interface.
 
 Parse array of strings and return an object of properties.
 
-## parseValue(string) -> boolean,number,string
+## parseValue(string) -> boolean|number|string
 
 Parse string value to match `true`, `false` or number patterns otherwise return
 string.
