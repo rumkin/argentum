@@ -13,6 +13,24 @@ It has several rules to parse values:
 
 Note that parsed values pull out from passed array.
 
+## Example
+
+Argentum converts command line arguments into appropriate JS types.
+
+```shell
+node app.js --host=localhost --port=8080 --dirs[] public build
+```
+
+Result of parsing is:
+
+```javascript
+{
+  host: 'localhost',
+  port: 8080,
+  dirs: ['public', 'build']
+}
+```
+
 ## Usage
 
 ```javascript
