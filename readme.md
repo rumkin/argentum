@@ -1,6 +1,9 @@
 Argentum
 ---
 
+![Build](https://img.shields.io/travis/rumkin/argentum.svg)
+
+
 Argentum is a unified command line arguments parser. It parses arguments into
 JS values boolean, number, date, string or array of values. Argentum has no
 schema like other parsers it just try to parse all passed values.
