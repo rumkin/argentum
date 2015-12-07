@@ -48,7 +48,7 @@ argentum.parse(args); // -> {a: true, b: true}
 args; // -> ['value']
 ```
 
-Parsing results:
+Parsing schema
 
 | Cli               | JavaScript         |
 |:------------------|:-------------------|
