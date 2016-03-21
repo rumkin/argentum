@@ -45,7 +45,7 @@ argentum.parse(['--hello=world']); // -> {hello: "world"}
 
 // Splicing
 var args = ['-x', 'value', '-d'];
-argentum.parse(args); // -> {a: true, b: true}
+argentum.parse(args); // -> {x: true, d: true}
 args; // -> ['value']
 ```
 
