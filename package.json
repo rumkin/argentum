@@ -1,18 +1,28 @@
 {
   "name": "argentum",
   "description": "Command line arguments parser",
-  "keywords": ["cli", "opts", "getopt", "parse", "arguments", "argv", "args"],
   "version": "0.2.2",
+  "keywords": [
+    "cli",
+    "opts",
+    "getopt",
+    "parse",
+    "arguments",
+    "argv",
+    "args"
+  ],
   "repository": "rumkin/argentum",
   "main": "src/argentum.js",
   "devDependencies": {
+    "coveralls": "^2.11.4",
     "istanbul": "^0.4.1",
     "mocha": "^2.3.3",
     "unit.js": "^2.0.0"
   },
   "scripts": {
     "test": "make test",
-    "cov": "make cov"
+    "cov": "make cov",
+    "coveralls": "cat coverage/lcov.info | node_modules/.bin/coveralls"
   },
   "license": "MIT",
   "dependencies": {

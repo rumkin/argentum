@@ -14,6 +14,10 @@ cov: lib-cov
 
 .PHONY: test
 test:
-	$(BIN)/mocha "test/*.spec.js"
+	$(BIN)/istanbul cover $(BIN)/_mocha "test/*.spec.js"
 
 clean: clean-cov clean-cov-report
+
+.PHONY: coveralls
+coveralls:
+	npm run coveralls

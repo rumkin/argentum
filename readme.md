@@ -2,6 +2,7 @@ Argentum
 ---
 
 ![Build](https://img.shields.io/travis/rumkin/argentum.svg)
+[![Coverage Status](https://coveralls.io/repos/rumkin/argentum/badge.svg?branch=master&service=github)](https://coveralls.io/github/rumkin/argentum?branch=master)
 
 
 Argentum is a unified command line arguments parser. It parses arguments into
