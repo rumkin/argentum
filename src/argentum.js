@@ -13,10 +13,16 @@ var double = /^--([a-zA-Z0-9][a-zA-Z0-9_-]*)(\[])?(=(.+))?$/;
  * @param  {string[]} argv Array of string.
  * @return {object}      Parsed params.
  */
-function parse(argv) {
+function parse(argv, options_) {
+  var options = Object.assign({}, options_);
   var opts = {};
   var current;
   var currentIsArray = false;
+  var aliases = {};
+
+  if (typeof options.aliases === 'object') {
+    Object.assign(aliases, options.aliases);
+  }
 
   argv.slice().forEach(function(arg, i){
     var value, name;
@@ -28,6 +34,9 @@ function parse(argv) {
       });
 
       value = typeof match[4] !== 'undefined' ? match[4] : 'true';
+      if (name in aliases) {
+        name = aliases[name];
+      }
       current = name;
       currentIsArray = false;
 
@@ -57,6 +66,9 @@ function parse(argv) {
       }
 
       match[1].split('').forEach(function(flag) {
+          if (flag in aliases) {
+            flag = aliases[flag];
+          }
           opts[flag] = true;
       });
 

@@ -37,6 +37,11 @@ describe('Argentum argv parser', function () {
         ;
   });
 
+  it('Should use aliases', function(){
+    var result = argentum.parse(['-v'], {aliases:{v: 'verbose'}});
+    test.object(result).hasProperty('verbose', true);
+  });
+
   it('Should parse "true" as boolean true', function () {
     var result = argentum.parse(['--test=true']);
 
@@ -118,32 +123,34 @@ describe('Argentum argv parser', function () {
       ;
   });
 
-  it('Should split arrays with double hyphen', function () {
-    var result = argentum.split(['1', '--', '2', '--', '3']);
+  describe('Split util', function(){
+    it('Should split arrays with double hyphen', function () {
+      var result = argentum.split(['1', '--', '2', '--', '3']);
 
-    test.array(result).hasProperty('length', 3);
-    test.array(result[0]);
-    test.array(result[1]);
-    test.array(result[2]);
-  });
+      test.array(result).hasProperty('length', 3);
+      test.array(result[0]);
+      test.array(result[1]);
+      test.array(result[2]);
+    });
 
-  it('Should split arrays with double hyphen with limit', function () {
-    var result = argentum.split(['1', '--', '2', '--', '3'], 1);
+    it('Should split arrays with double hyphen with limit', function () {
+      var result = argentum.split(['1', '--', '2', '--', '3'], 1);
 
-    test.array(result).hasProperty('length', 2);
-    test.array(result[0]);
-    test.array(result[1])
+      test.array(result).hasProperty('length', 2);
+      test.array(result[0]);
+      test.array(result[1])
       .hasProperty('length', 3)
       .hasProperty('0', '2')
       .hasProperty('1', '--')
       .hasProperty('2', '3')
       ;
-  });
+    });
 
-  it('Should not split arrays with double hyphen', function () {
-    var result = argentum.split(['1']);
+    it('Should not split arrays with double hyphen', function () {
+      var result = argentum.split(['1']);
 
-    test.array(result).hasProperty('length', 1);
-    test.array(result[0]);
+      test.array(result).hasProperty('length', 1);
+      test.array(result[0]);
+    });
   });
 });
