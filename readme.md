@@ -43,7 +43,7 @@ var argentum = require('argentum');
 argentum.parse(['--hello=world']); // -> {hello: "world"}
 
 // Splicing
-var args = ['--a', 'value', '--b'];
+var args = ['-x', 'value', '-d'];
 argentum.parse(args); // -> {a: true, b: true}
 args; // -> ['value']
 ```
@@ -52,6 +52,7 @@ Parsing schema
 
 | Cli               | JavaScript         |
 |:------------------|:-------------------|
+| `-v`              | `{v: true}`        |
 | `--hello=world`   | `{hello: 'world'}` |
 | `--number=1`      | `{number: 1}`      |
 | `--bool`          | `{bool: true}`     |

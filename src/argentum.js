@@ -4,7 +4,8 @@ module.exports.parse = parse;
 module.exports.split = split;
 module.exports.parseValue = parseValue;
 
-var rule = /^--([a-zA-Z0-9][a-zA-Z0-9_-]*)(\[])?(=(.+))?$/;
+var single = /^-(.+)/;
+var double = /^--([a-zA-Z0-9][a-zA-Z0-9_-]*)(\[])?(=(.+))?$/;
 
 /**
  * Parse array of options into object.
@@ -18,8 +19,8 @@ function parse(argv) {
   var currentIsArray = false;
 
   argv.slice().forEach(function(arg, i){
-    var match = arg.match(rule);
     var value, name;
+    var match = arg.match(double);
 
     if (match) {
       name = match[1].replace(/-(.)/g, function (m, v) {
@@ -49,6 +50,17 @@ function parse(argv) {
       } else {
         opts[name] = value;
       }
+    } else if (match = arg.match(single)) {
+      if (current) {
+          current = null;
+          currentIsArray = false;
+      }
+
+      match[1].split('').forEach(function(flag) {
+          opts[flag] = true;
+      });
+
+      argv.splice(i, 1);
     } else if (currentIsArray) {
       argv.splice(i, 1);
       opts[current].push(parseValue(arg));

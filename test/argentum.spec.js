@@ -23,6 +23,20 @@ describe('Argentum argv parser', function () {
     test.object(result).hasProperty('test', true);
   });
 
+  it('Should parse flag rules as boolean true', function(){
+      var result = argentum.parse(['-v']);
+      test.object(result).hasProperty('v', true);
+  });
+
+  it('Should parse batch flag rules as boolean true', function(){
+      var result = argentum.parse(['-vdf']);
+      test.object(result)
+        .hasProperty('v', true)
+        .hasProperty('d', true)
+        .hasProperty('f', true)
+        ;
+  });
+
   it('Should parse "true" as boolean true', function () {
     var result = argentum.parse(['--test=true']);
 

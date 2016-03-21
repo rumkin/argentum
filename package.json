@@ -2,7 +2,7 @@
   "name": "argentum",
   "description": "Command line arguments parser",
   "keywords": ["cli", "opts", "getopt", "parse", "arguments", "argv", "args"],
-  "version": "0.1.2",
+  "version": "0.2.2",
   "repository": "rumkin/argentum",
   "main": "src/argentum.js",
   "devDependencies": {
