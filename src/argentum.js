@@ -15,7 +15,7 @@ var double = /^--([a-zA-Z0-9][a-zA-Z0-9_-]*)(\[])?(=(.+))?$/;
  */
 function parse(argv, options_) {
   var options = Object.assign({}, options_);
-  var opts = {};
+  var opts = Object.assign({}, options.defaults);
   var current;
   var currentIsArray = false;
   var aliases = {};

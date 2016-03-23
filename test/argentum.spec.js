@@ -123,6 +123,20 @@ describe('Argentum argv parser', function () {
       ;
   });
 
+  it('Should use defaults', function(){
+    var result = argentum.parse(['-a'], {
+        defaults: {
+            a: false,
+            b: false
+        }
+    });
+
+    test.object(result)
+        .hasProperty('a', true)
+        .hasProperty('b', false)
+        ;
+  });
+
   describe('Split util', function(){
     it('Should split arrays with double hyphen', function () {
       var result = argentum.split(['1', '--', '2', '--', '3']);
