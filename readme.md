@@ -65,9 +65,37 @@ Parsing schema
 
 Package require interface.
 
-## parse(string[]) -> object
+## parse(string[], options{}) -> object
 
 Parse array of strings and return an object of properties.
+
+### options.defaults -> object
+
+Default values dictionary. Example:
+
+```javascript
+var args = argentum.parse(
+    ['--verbose'],
+    {defaults:{
+        debug: true
+    }}
+);
+args; // -> {debug: true, verbose: true}
+```
+
+### options.aliases -> object
+
+Aliases dictionary where key is alias and value is the property. Example:
+
+```javascript
+var args = argentum.parse(
+    ['-d'],
+    {aliases:{
+        d: 'debug'
+    }}
+);
+args; // -> {debug: true}
+```
 
 ## parseValue(string) -> boolean|number|string
 
