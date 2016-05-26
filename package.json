@@ -1,7 +1,7 @@
 {
   "name": "argentum",
   "description": "Command line arguments parser",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "keywords": [
     "cli",
     "opts",
@@ -24,8 +24,5 @@
     "cov": "make cov",
     "coveralls": "cat coverage/lcov.info | node_modules/.bin/coveralls"
   },
-  "license": "MIT",
-  "dependencies": {
-    "mocha-istanbul": "^0.2.0"
-  }
+  "license": "MIT"
 }
