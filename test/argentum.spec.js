@@ -37,6 +37,13 @@ describe('Argentum argv parser', function () {
         ;
   });
 
+  it('Should set nested properties', function () {
+    var result = argentum.parse(['--a.b']);
+
+    test.object(result).hasProperty('a');
+    test.object(result.a).hasProperty('b', true);
+  });
+
   it('Should use aliases', function(){
     var result = argentum.parse(['-v'], {aliases:{v: 'verbose'}});
     test.object(result).hasProperty('verbose', true);
@@ -99,6 +106,28 @@ describe('Argentum argv parser', function () {
     test.array(result.test)
       .hasProperty(0, 1)
       .hasProperty(1, 2);
+  });
+
+  it('Should push nested properties on []', function () {
+    var result = argentum.parse(['--a.b[]', 'true']);
+
+    test.object(result).hasProperty('a');
+    test.object(result.a).hasProperty('b');
+    test.object(result.a.b)
+    .hasProperty('length', 1)
+    .hasProperty(0, true)
+    ;
+  });
+
+  it('Should push nested properties on []=', function () {
+    var result = argentum.parse(['--a.b[]=true']);
+
+    test.object(result).hasProperty('a');
+    test.object(result.a).hasProperty('b');
+    test.object(result.a.b)
+    .hasProperty('length', 1)
+    .hasProperty(0, true)
+    ;
   });
 
   it('Should cut matched arguments from source array', function () {
