@@ -1,7 +1,7 @@
 {
   "name": "argentum",
   "description": "Command line arguments parser",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "keywords": [
     "cli",
     "opts",
@@ -20,7 +20,7 @@
     "unit.js": "^2.0.0"
   },
   "scripts": {
-    "test": "make test",
+    "test": "mocha test/**.spec.js",
     "cov": "make cov",
     "coveralls": "cat coverage/lcov.info | node_modules/.bin/coveralls"
   },
