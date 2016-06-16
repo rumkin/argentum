@@ -6,7 +6,7 @@ module.exports.parse = parse;
 module.exports.split = split;
 module.exports.parseValue = parseValue;
 
-const single = /^-(.+)/;
+const single = /^-([a-zA-Z]+)/;
 const double = /^--([a-zA-Z0-9][a-zA-Z0-9_.-]*)(\[])?(=(.+))?$/;
 
 /**
