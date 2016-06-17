@@ -97,6 +97,17 @@ var args = argentum.parse(
 args; // -> {debug: true}
 ```
 
+### options.eval -> bool
+
+If passed then all string values in source array will be converted in their js
+equivalent:
+
+```javascript
+var argv = ['1', '10.99', 'true', 'false', 'hello'];
+argentum.parse(argv, {eval: true});
+argv; // => [1, 10.99, true, false, 'hello']
+```
+
 ## parseValue(string) -> boolean|number|string
 
 Parse string value to match `true`, `false` or number patterns otherwise return

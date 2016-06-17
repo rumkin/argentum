@@ -92,6 +92,13 @@ describe('Argentum argv parser', function () {
     test.array(result.test).hasProperty(0, 1);
   });
 
+  it('Should parse values in argv if parseAll option is passed', function(){
+    var argv = ['1', '10.99', 'true', 'false'];
+    argentum.parse(argv, {eval: true});
+
+    test.array(argv).is([1, 10.99, true, false]);
+  });
+
   it('Should overwrite non-array value', function () {
     var result = argentum.parse(['--test=1', '--test[]=2']);
 

@@ -21,7 +21,7 @@ function parse(argv, options_) {
   var current;
   var currentIsArray = false;
   var aliases = {};
-
+  var evaluate = options.eval || false;
   if (typeof options.aliases === 'object') {
     Object.assign(aliases, options.aliases);
   }
@@ -78,6 +78,8 @@ function parse(argv, options_) {
     } else if (currentIsArray) {
       argv.splice(i, 1);
       keypath.push(opts, current, parseValue(arg));
+    } else if (evaluate) {
+      argv[i] = parseValue(argv[i]);
     }
   });
 
