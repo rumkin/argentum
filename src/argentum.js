@@ -6,7 +6,7 @@ module.exports.parse = parse;
 module.exports.split = split;
 module.exports.parseValue = parseValue;
 
-const single = /^-([a-zA-Z]+)/;
+const single = /^-([a-zA-Z]+$)/;
 const double = /^--([a-zA-Z0-9][a-zA-Z0-9_.-]*)(\[])?(=(.+))?$/;
 
 /**
@@ -26,6 +26,8 @@ function parse(argv, options_) {
     Object.assign(aliases, options.aliases);
   }
 
+  var spliced = 0;
+
   argv.slice().forEach(function(arg, i){
     var value, name;
     var match = arg.match(double);
@@ -42,7 +44,9 @@ function parse(argv, options_) {
       current = name;
       currentIsArray = false;
 
+
       var isArray = (match[2] === '[]');
+
       if (isArray && typeof match[4] === 'undefined') {
         // Skip empty array options like --users[].
         currentIsArray = true;
@@ -54,7 +58,8 @@ function parse(argv, options_) {
 
       value = parseValue(value);
 
-      argv.splice(i, 1);
+      argv.splice(i - spliced, 1);
+      spliced += 1;
 
       if (isArray) {
         keypath.push(opts, name, value);
@@ -74,12 +79,15 @@ function parse(argv, options_) {
           opts[flag] = true;
       });
 
-      argv.splice(i, 1);
+      argv.splice(i - spliced, 1);
+      spliced += 1;
     } else if (currentIsArray) {
-      argv.splice(i, 1);
+      argv.splice(i - spliced, 1);
+      spliced += 1;
       keypath.push(opts, current, parseValue(arg));
     } else if (evaluate) {
       argv[i] = parseValue(argv[i]);
+      spliced += 1;
     }
   });
 
