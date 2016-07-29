@@ -1,7 +1,7 @@
 {
   "name": "argentum",
   "description": "Command line arguments parser",
-  "version": "0.5.5",
+  "version": "0.6.0",
   "keywords": [
     "cli",
     "opts",

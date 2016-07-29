@@ -49,6 +49,12 @@ describe('Argentum argv parser', function () {
     test.object(result).hasProperty('verbose', true);
   });
 
+  it('Should use deep aliases', function(){
+    var result = argentum.parse(['-v'], {aliases:{v: 'test.verbose'}});
+    test.object(result).hasProperty('test');
+    test.object(result.test).hasProperty('verbose', true);
+  });
+
   it('Should parse "true" as boolean true', function () {
     var result = argentum.parse(['--test=true']);
 
@@ -163,14 +169,19 @@ describe('Argentum argv parser', function () {
     var result = argentum.parse(['-a'], {
         defaults: {
             a: false,
-            b: false
+            b: false,
+            'c.d': true,
         }
     });
 
     test.object(result)
         .hasProperty('a', true)
         .hasProperty('b', false)
+        .hasProperty('c')
         ;
+
+    test.object(result.c)
+      .hasProperty('d', true);
   });
 
   describe('Split util', function(){

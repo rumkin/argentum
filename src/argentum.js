@@ -17,7 +17,14 @@ const double = /^--([a-zA-Z0-9][a-zA-Z0-9_.-]*)(\[])?(=(.+))?$/;
  */
 function parse(argv, options_) {
   var options = Object.assign({}, options_);
-  var opts = Object.assign({}, options.defaults);
+  var opts = {};
+  if (options.defaults) {
+    Object.getOwnPropertyNames(options.defaults)
+    .forEach((key) => {
+      keypath.set(opts, key, options.defaults[key]);
+    });
+  }
+
   var current;
   var currentIsArray = false;
   var aliases = {};
@@ -41,6 +48,7 @@ function parse(argv, options_) {
       if (name in aliases) {
         name = aliases[name];
       }
+
       current = name;
       currentIsArray = false;
 
@@ -76,7 +84,8 @@ function parse(argv, options_) {
           if (flag in aliases) {
             flag = aliases[flag];
           }
-          opts[flag] = true;
+
+          keypath.set(opts, flag, true);
       });
 
       argv.splice(i - spliced, 1);
